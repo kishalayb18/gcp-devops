@@ -17,12 +17,14 @@ def get_weather(api_key,city):
         data = response.json()
 
         if response.status_code == 200:
-            return data
+            return [data, response.status_code]
         else:
             return None
+            # return ["Weather data not available", response.status_code]
         
     except Exception as e:
-        return e
+        return None
+        # return ["Weather data not available", response.status_code]
 
 if __name__=="__main__":
     print(get_weather('eb22c2a067ed531a86575498bad22fe9','kolkata'))

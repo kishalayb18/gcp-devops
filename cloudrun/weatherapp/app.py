@@ -16,21 +16,28 @@ app= Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        city = request.form['city']
+        city = request.form['town']
         api_key = var.key
         weather_data = get_weather(api_key, city)
-        req_data={
-            'city name':weather_data['name'],
-            'country':weather_data['sys']['country'],
-            'description':weather_data['main']['temp']+'°C',
-            'Humidity':weather_data['main']['humidity']+'%',
-            'Wind Speed':weather_data['wind']['speed']+'m/s'
-        }
+
+        ##to print on terminal or postman
+        # if weather_data[1]==200:
+        #     weather_data=weather_data[0]
+        #     req_data={
+        #         'city name':weather_data['name'],
+        #         'country':weather_data['sys']['country'],
+        #         'description':str(weather_data['main']['temp'])+'°C',
+        #         'Humidity':str(weather_data['main']['humidity'])+' %',
+        #         'Wind Speed':str(weather_data['wind']['speed'])+' m/s'
+        #     }
+        #     print(req_data)
+        # else:
+        #     print(weather_data[0])
         
-        return jsonify(req_data)
-        # return render_template('index.html',weather_data=weather_data)
-    # else:
-    #     return render_template('index.html',weather_data=None)
+        return render_template('index.html',weather_data=weather_data)
+    else:
+        return render_template('index.html',weather_data=None)
+        # return "will get the datas from postman"
 
 if __name__ == '__main__':
     app.run(port=int(os.environ.get("PORT",8080)), host='0.0.0.0', debug=True)
