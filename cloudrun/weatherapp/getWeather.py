@@ -17,7 +17,8 @@ def get_weather(api_key,city):
         data = response.json()
 
         if response.status_code == 200:
-            return [data, response.status_code]
+            return data
+            # return [data, response.status_code]
         else:
             return None
             # return ["Weather data not available", response.status_code]
