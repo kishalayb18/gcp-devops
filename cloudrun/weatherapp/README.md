@@ -1,6 +1,4 @@
-# gcp-devops
-GCP DevOps related projects will be here
-
+# Google Cloudrun
 
 docker build -t gcr.io/solar-bolt-436013-g3/weatherapp .
 
