@@ -16,7 +16,7 @@ app= Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        city = request.form['town']
+        city = request.form['city']
         api_key = var.key
         weather_data = get_weather(api_key, city)
 
@@ -33,7 +33,7 @@ def index():
         #     print(req_data)
         # else:
         #     print(weather_data[0])
-        
+
         return render_template('index.html',weather_data=weather_data)
     else:
         return render_template('index.html',weather_data=None)
